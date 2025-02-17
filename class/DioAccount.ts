@@ -27,15 +27,15 @@ export abstract class DioAccount {
     return `Saldo insuficiente. Seu saldo é: R$${this.balance}.`
   }
 
-  getBalance = (): number => {
+  protected getBalance = (): number => {
     return this.balance
   }
 
   validateStatus = (): boolean => {
-    if (this.status) {
-      return this.status
+    if (!this.status) {
+      throw new Error('Conta inválida')
     }
 
-    throw new Error('Conta inválida')
+    return true
   }
 }
